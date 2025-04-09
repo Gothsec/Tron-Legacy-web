@@ -31,7 +31,7 @@ const navItems: NavItem[] = [
 
 <nav
   id="main-nav"
-  class="fixed right-9 top-1/2 -translate-y-1/2 z-[100] bg-[var(--background)] border border-[var(--prim)] rounded-full backdrop-blur-xl transition-all duration-300 py-8 px-4"
+  class="fixed right-9 top-1/2 -translate-y-1/2 z-[100] bg-[var(--background)] border-2 border-[var(--prim)] rounded-2xl backdrop-blur-xl transition-all duration-300"
 >
   <ul class="flex flex-col gap-18">
     {
@@ -55,6 +55,7 @@ const navItems: NavItem[] = [
 <style>
   nav {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    padding: 1.6rem 0.3rem;
   }
 
   nav.scrolling {
@@ -69,20 +70,41 @@ const navItems: NavItem[] = [
 
   @media (max-width: 767px) {
     nav {
-      right: 3px;
-      padding: 1rem 0.5rem;
-      border-radius: 1.5rem;
+      width: 100% !important;
+      height: auto !important;
+      transform: none !important;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      top: auto;
+      position: fixed;
+      border-radius: 1rem 1rem 0 0;
+      padding: 0.75rem 1rem;
+      z-index: 1000;
     }
-    
+
     nav ul {
-      gap: 1.5rem;
-      margin: 0;
+      flex-direction: row !important;
+      justify-content: space-around;
+      gap: 0.5rem !important;
       padding: 0;
+      margin: 0;
     }
-    
+
+    nav li {
+      flex: 1;
+      text-align: center;
+    }
+
     nav a {
-      width: 1.75rem;
-      height: 1.75rem;
+      width: 100% !important;
+      height: 3rem !important;
+    }
+
+    nav.scrolling {
+      border-radius: 1rem 1rem 0 0;
+      background-color: var(--component-bg);
+      backdrop-filter: blur(10px);
     }
   }
 </style>
@@ -144,5 +166,18 @@ const navItems: NavItem[] = [
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     sections.forEach((section) => observer.observe(section));
+
+    // Add this code to adjust padding at the bottom of the body for mobile view
+    function adjustBodyPadding() {
+      if (window.innerWidth <= 767) {
+        const navHeight = nav?.offsetHeight || 0;
+        document.body.style.paddingBottom = `${navHeight + 16}px`;
+      } else {
+        document.body.style.paddingBottom = '0';
+      }
+    }
+
+    window.addEventListener('resize', adjustBodyPadding);
+    adjustBodyPadding(); // Initial call
   });
 </script>
