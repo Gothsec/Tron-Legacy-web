@@ -13,8 +13,6 @@
     system-ui,
     sans-serif;
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
 *::selection {
@@ -22,28 +20,33 @@
   color: var(--background);
 }
 
-/* Scrollbar styles */
-
+/* Chrome, Safari y Opera */
 ::-webkit-scrollbar {
-  width: 15px;
+  width: 0;
+  display: none;
 }
 
-::-webkit-scrollbar-track {
-  background: var(--container);
-  border-radius: 30px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--background);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--pink);
-}
-
-/* Scrollbar styles for Firefox */
+/* Firefox */
 * {
-  scrollbar-width: thin;
-  scrollbar-color: var(--line) var(--container);
+  scrollbar-width: none;
+  -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.scrollable {
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none;
 }
