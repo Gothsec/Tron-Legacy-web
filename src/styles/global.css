@@ -12,7 +12,6 @@
     -apple-system,
     system-ui,
     sans-serif;
-  box-sizing: border-box;
 }
 
 *::selection {

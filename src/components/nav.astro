@@ -31,7 +31,7 @@ const navItems: NavItem[] = [
 
 <nav
   id="main-nav"
-  class="fixed right-9 top-1/2 -translate-y-1/2 z-[100] border-2 border-[var(--prim)] rounded-2xl backdrop-blur-xl transition-all duration-300"
+  class="fixed right-9 top-1/2 -translate-y-1/2 z-[100] border-2 border-[#ffffff1e] rounded-2xl backdrop-blur-xl transition-all duration-300"
 >
   <ul class="flex flex-col gap-18">
     {
@@ -73,7 +73,7 @@ const navItems: NavItem[] = [
       width: 100% !important;
       height: auto !important;
       transform: none !important;
-      bottom: 0;
+      bottom: -6%;
       left: 0;
       right: 0;
       top: auto;
@@ -166,18 +166,5 @@ const navItems: NavItem[] = [
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     sections.forEach((section) => observer.observe(section));
-
-    // Add this code to adjust padding at the bottom of the body for mobile view
-    function adjustBodyPadding() {
-      if (window.innerWidth <= 767) {
-        const navHeight = nav?.offsetHeight || 0;
-        document.body.style.paddingBottom = `${navHeight + 16}px`;
-      } else {
-        document.body.style.paddingBottom = '0';
-      }
-    }
-
-    window.addEventListener('resize', adjustBodyPadding);
-    adjustBodyPadding(); // Initial call
   });
 </script>
